@@ -34,3 +34,10 @@ cd evolution
 
 To add a new task to the backlog, append a `- [ ]` line to `TODO.md`. The next
 automated run will pick it up.
+
+## Project docs
+
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to propose changes and how the
+  automated TODO.md-driven workflow operates.
+- [`LICENSE`](LICENSE) — the project's license.
+- [`SECURITY.md`](SECURITY.md) — how to privately report a security issue.
