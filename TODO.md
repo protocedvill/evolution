@@ -1,5 +1,5 @@
 # Auto-iteration backlog
-
+## The goal is to produce code and tools which would be useful to a user. Consider that when brainstorming new items in the todo list.
 - [x] Flesh out README.md with a real project description, purpose, and setup/usage instructions (currently only contains the title "# evolution")
 - [x] Add a .gitignore file covering common OS, editor, and language tooling artifacts (.DS_Store, node_modules/, __pycache__/, .env, etc.)
 - [x] Add a LICENSE file since the project currently has none
@@ -15,6 +15,4 @@
 - [x] Add some more code.
 - [x] And some more code.
 - [x] Add a "Project docs" section to README.md linking to CONTRIBUTING.md, LICENSE, and SECURITY.md, none of which are currently referenced anywhere in README.md
-- [ ] Add a .gitattributes file to enforce LF line endings for text files, complementing the line-ending rules already set in .editorconfig
-- [ ] Add a small test script (e.g. `scripts/test_check_todo_format.sh`) that verifies `check_todo_format.sh` correctly passes well-formed TODO.md content and fails on malformed lines
 
