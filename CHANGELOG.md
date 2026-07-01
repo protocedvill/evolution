@@ -27,3 +27,7 @@ so entries are grouped by date instead of by release.
 - `scripts/check_todo_format.sh` to lint `TODO.md` and confirm every
   checklist line starts with `- [ ] ` or `- [x] `.
 - `SECURITY.md` describing how to privately report a security issue.
+- `scripts/todo_stats.py` to print `TODO.md` checklist completion stats,
+  with `--remaining` and `--percent` flags.
+- `tests/test_todo_stats.py` unit tests covering the helper functions in
+  `scripts/todo_stats.py`.
