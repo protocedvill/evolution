@@ -9,5 +9,5 @@
 - [x] Add a GitHub issue template (`.github/ISSUE_TEMPLATE/backlog_item.md`) for proposing a new TODO.md backlog item, matching the format described in CONTRIBUTING.md
 - [x] Add a `.editorconfig` file to enforce consistent indentation, line endings, and trailing whitespace rules across editors for future source files
 - [x] Add a small shell script (e.g. `scripts/check_todo_format.sh`) that lints TODO.md to confirm every checklist line starts with `- [ ] ` or `- [x] `, and document it in CONTRIBUTING.md
-- [ ] Add a SECURITY.md describing how to privately report a security issue, since the repo has no such policy yet
+- [x] Add a SECURITY.md describing how to privately report a security issue, since the repo has no such policy yet
 
