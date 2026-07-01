@@ -1,5 +1,13 @@
 # Auto-iteration backlog
-## The goal is to produce code and tools which would be useful to a user. Consider that when brainstorming new items in the todo list.
+Do not implement todo entries which use any of the following forbidden paths.
+forbidden_paths:
+  - ".git/**"
+  - ".env*"
+  - "**/*.pem"
+  - "**/id_rsa*"
+  - ".github/workflows/**"
+  - "**/secrets/**"
+## The goal is to produce tools which would be useful to a user. Consider that when brainstorming new items in the todo list.
 - [x] Flesh out README.md with a real project description, purpose, and setup/usage instructions (currently only contains the title "# evolution")
 - [x] Add a .gitignore file covering common OS, editor, and language tooling artifacts (.DS_Store, node_modules/, __pycache__/, .env, etc.)
 - [x] Add a LICENSE file since the project currently has none
@@ -15,7 +23,6 @@
 - [x] Add some more code.
 - [x] And some more code.
 - [x] Add a "Project docs" section to README.md linking to CONTRIBUTING.md, LICENSE, and SECURITY.md, none of which are currently referenced anywhere in README.md
-- [ ] Add a GitHub Actions workflow (`.github/workflows/ci.yml`) that runs `scripts/check_todo_format.sh` and the Python test suite (`python -m unittest discover -s tests`) on push and pull request
 - [ ] Update the "Unreleased" section of CHANGELOG.md to add entries for `scripts/todo_stats.py` and its test suite `tests/test_todo_stats.py`, which were added in prior commits but are currently undocumented in the changelog
 - [ ] Document `scripts/todo_stats.py` and its `--remaining`/`--percent` flags in the "Setup / usage" section of README.md, since the script currently isn't mentioned anywhere in the project docs
 - [ ] Add unit tests for the `main()` CLI entry point in `scripts/todo_stats.py` (covering default output, `--remaining`, and `--percent`), since currently only the helper functions it calls are tested
