@@ -47,3 +47,15 @@ item, keep it small and unambiguous enough to survive that check.
   part of a backlog item unless the item explicitly calls for it.
 - Update or add tests when the project has a test suite covering the area
   you're changing.
+
+## Checking TODO.md formatting
+
+Run [`scripts/check_todo_format.sh`](scripts/check_todo_format.sh) to confirm
+every checklist line in `TODO.md` starts with `- [ ] ` or `- [x] `:
+
+```bash
+./scripts/check_todo_format.sh
+```
+
+It exits non-zero and prints the offending line(s) if any checklist entry is
+malformed.
