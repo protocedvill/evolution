@@ -35,6 +35,14 @@ cd evolution
 To add a new task to the backlog, append a `- [ ]` line to `TODO.md`. The next
 automated run will pick it up.
 
+To check backlog progress, run `scripts/todo_stats.py`:
+
+```bash
+python3 scripts/todo_stats.py            # e.g. "16/19 tasks done (3 remaining)"
+python3 scripts/todo_stats.py --percent  # e.g. "84%"
+python3 scripts/todo_stats.py --remaining  # list the text of each unchecked item
+```
+
 ## Project docs
 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to propose changes and how the
