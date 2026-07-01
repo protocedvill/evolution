@@ -4,5 +4,5 @@
 - [x] Add a .gitignore file covering common OS, editor, and language tooling artifacts (.DS_Store, node_modules/, __pycache__/, .env, etc.)
 - [x] Add a LICENSE file since the project currently has none
 - [x] Add a CONTRIBUTING.md explaining how to propose changes, including how the automated TODO.md-driven workflow operates
-- [ ] Add a CHANGELOG.md to track notable changes going forward
+- [x] Add a CHANGELOG.md to track notable changes going forward
 
