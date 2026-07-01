@@ -18,3 +18,12 @@ so entries are grouped by date instead of by release.
 - `.gitignore` covering common OS, editor, and language tooling artifacts.
 - Fleshed out `README.md` with a real project description, purpose, and
   setup/usage instructions.
+- GitHub pull request template (`.github/PULL_REQUEST_TEMPLATE.md`) that
+  reminds contributors to scope changes to a single `TODO.md` item.
+- GitHub issue template (`.github/ISSUE_TEMPLATE/backlog_item.md`) for
+  proposing a new `TODO.md` backlog item.
+- `.editorconfig` to enforce consistent indentation, line endings, and
+  trailing whitespace rules across editors.
+- `scripts/check_todo_format.sh` to lint `TODO.md` and confirm every
+  checklist line starts with `- [ ] ` or `- [x] `.
+- `SECURITY.md` describing how to privately report a security issue.
