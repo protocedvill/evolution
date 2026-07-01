@@ -14,7 +14,6 @@
 - [x] Start adding some code.
 - [x] Add some more code.
 - [x] And some more code.
-- [ ] Add a GitHub Actions workflow (`.github/workflows/lint-todo.yml`) that runs `scripts/check_todo_format.sh` on every push and pull request, so malformed TODO.md checklist lines are caught automatically instead of relying on manual runs
 - [ ] Add a "Project docs" section to README.md linking to CONTRIBUTING.md, LICENSE, and SECURITY.md, none of which are currently referenced anywhere in README.md
 - [ ] Add a .gitattributes file to enforce LF line endings for text files, complementing the line-ending rules already set in .editorconfig
 - [ ] Add a small test script (e.g. `scripts/test_check_todo_format.sh`) that verifies `check_todo_format.sh` correctly passes well-formed TODO.md content and fails on malformed lines
