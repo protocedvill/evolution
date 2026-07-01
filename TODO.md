@@ -25,6 +25,6 @@ forbidden_paths:
 - [x] Add a "Project docs" section to README.md linking to CONTRIBUTING.md, LICENSE, and SECURITY.md, none of which are currently referenced anywhere in README.md
 - [x] Update the "Unreleased" section of CHANGELOG.md to add entries for `scripts/todo_stats.py` and its test suite `tests/test_todo_stats.py`, which were added in prior commits but are currently undocumented in the changelog
 - [x] Document `scripts/todo_stats.py` and its `--remaining`/`--percent` flags in the "Setup / usage" section of README.md, since the script currently isn't mentioned anywhere in the project docs
-- [ ] Add unit tests for the `main()` CLI entry point in `scripts/todo_stats.py` (covering default output, `--remaining`, and `--percent`), since currently only the helper functions it calls are tested
+- [x] Add unit tests for the `main()` CLI entry point in `scripts/todo_stats.py` (covering default output, `--remaining`, and `--percent`), since currently only the helper functions it calls are tested
 - [ ] Add a `Makefile` (or `scripts/check.sh`) with a single `check`/`test` target that runs both `scripts/check_todo_format.sh` and the Python test suite, so contributors have one command to validate changes
 

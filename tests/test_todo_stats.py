@@ -1,10 +1,18 @@
+import io
 import sys
+import tempfile
 import unittest
+from contextlib import redirect_stdout
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
-from todo_stats import count_checklist_items, percent_complete, remaining_items  # noqa: E402
+from todo_stats import (  # noqa: E402
+    count_checklist_items,
+    main,
+    percent_complete,
+    remaining_items,
+)
 
 
 class CountChecklistItemsTest(unittest.TestCase):
@@ -60,6 +68,47 @@ class PercentCompleteTest(unittest.TestCase):
 
     def test_no_items_is_zero(self):
         self.assertEqual(percent_complete(0, 0), 0)
+
+
+class MainTest(unittest.TestCase):
+    def _write_todo(self, tmp_dir):
+        path = Path(tmp_dir) / "TODO.md"
+        path.write_text(
+            "# heading\n"
+            "- [x] done item\n"
+            "- [ ] pending item one\n"
+            "- [ ] pending item two\n"
+        )
+        return path
+
+    def test_default_output(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = self._write_todo(tmp_dir)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                exit_code = main(["todo_stats.py", str(path)])
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(out.getvalue(), "1/3 tasks done (2 remaining)\n")
+
+    def test_remaining_flag(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = self._write_todo(tmp_dir)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                exit_code = main(["todo_stats.py", "--remaining", str(path)])
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(
+                out.getvalue(), "pending item one\npending item two\n"
+            )
+
+    def test_percent_flag(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = self._write_todo(tmp_dir)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                exit_code = main(["todo_stats.py", "--percent", str(path)])
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(out.getvalue(), "33%\n")
 
 
 if __name__ == "__main__":
