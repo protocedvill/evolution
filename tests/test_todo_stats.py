@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
-from todo_stats import count_checklist_items, remaining_items  # noqa: E402
+from todo_stats import count_checklist_items, percent_complete, remaining_items  # noqa: E402
 
 
 class CountChecklistItemsTest(unittest.TestCase):
@@ -48,6 +48,18 @@ class RemainingItemsTest(unittest.TestCase):
 
     def test_empty_input(self):
         self.assertEqual(remaining_items([]), [])
+
+
+class PercentCompleteTest(unittest.TestCase):
+    def test_computes_rounded_percentage(self):
+        self.assertEqual(percent_complete(1, 3), 33)
+        self.assertEqual(percent_complete(2, 3), 67)
+
+    def test_all_done(self):
+        self.assertEqual(percent_complete(5, 5), 100)
+
+    def test_no_items_is_zero(self):
+        self.assertEqual(percent_complete(0, 0), 0)
 
 
 if __name__ == "__main__":

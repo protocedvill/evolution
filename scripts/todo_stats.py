@@ -27,10 +27,21 @@ def remaining_items(lines):
     return [line[len("- [ ] "):] for line in lines if line.startswith("- [ ] ")]
 
 
+def percent_complete(done, total):
+    """Return the percentage of checklist items done, rounded to the nearest int.
+
+    Returns 0 when there are no checklist items, to avoid dividing by zero.
+    """
+    if total == 0:
+        return 0
+    return round(100 * done / total)
+
+
 def main(argv):
     args = argv[1:]
     show_remaining = "--remaining" in args
-    paths = [arg for arg in args if arg != "--remaining"]
+    show_percent = "--percent" in args
+    paths = [arg for arg in args if arg not in ("--remaining", "--percent")]
     path = Path(paths[0]) if paths else Path(__file__).resolve().parent.parent / "TODO.md"
     lines = path.read_text().splitlines()
 
@@ -40,6 +51,11 @@ def main(argv):
         return 0
 
     done, total = count_checklist_items(lines)
+
+    if show_percent:
+        print(f"{percent_complete(done, total)}%")
+        return 0
+
     remaining = total - done
     print(f"{done}/{total} tasks done ({remaining} remaining)")
     return 0
