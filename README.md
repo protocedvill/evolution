@@ -43,6 +43,13 @@ python3 scripts/todo_stats.py --percent  # e.g. "84%"
 python3 scripts/todo_stats.py --remaining  # list the text of each unchecked item
 ```
 
+To validate a change before committing, run `make check` (or `make test`),
+which runs `scripts/check_todo_format.sh` and the Python test suite:
+
+```bash
+make check
+```
+
 ## Project docs
 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to propose changes and how the

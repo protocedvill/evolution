@@ -31,3 +31,5 @@ so entries are grouped by date instead of by release.
   with `--remaining` and `--percent` flags.
 - `tests/test_todo_stats.py` unit tests covering the helper functions in
   `scripts/todo_stats.py`.
+- `Makefile` with a `check`/`test` target that runs
+  `scripts/check_todo_format.sh` and the Python test suite in one command.

@@ -59,3 +59,12 @@ every checklist line in `TODO.md` starts with `- [ ] ` or `- [x] `:
 
 It exits non-zero and prints the offending line(s) if any checklist entry is
 malformed.
+
+## Running all checks
+
+Run `make check` (or `make test`) to run the TODO.md format check and the
+Python test suite in one command:
+
+```bash
+make check
+```
