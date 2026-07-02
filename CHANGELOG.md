@@ -33,3 +33,9 @@ so entries are grouped by date instead of by release.
   `scripts/todo_stats.py`.
 - `Makefile` with a `check`/`test` target that runs
   `scripts/check_todo_format.sh` and the Python test suite in one command.
+
+### Fixed
+
+- `scripts/todo_stats.py` now catches a missing/unreadable `TODO.md` path
+  and prints a clear message to stderr with exit code 1, instead of letting
+  an unhandled traceback surface.

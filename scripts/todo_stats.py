@@ -43,7 +43,11 @@ def main(argv):
     show_percent = "--percent" in args
     paths = [arg for arg in args if arg not in ("--remaining", "--percent")]
     path = Path(paths[0]) if paths else Path(__file__).resolve().parent.parent / "TODO.md"
-    lines = path.read_text().splitlines()
+    try:
+        lines = path.read_text().splitlines()
+    except FileNotFoundError:
+        print(f"todo_stats.py: no such file: {path}", file=sys.stderr)
+        return 1
 
     if show_remaining:
         for item in remaining_items(lines):

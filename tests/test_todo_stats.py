@@ -2,7 +2,7 @@ import io
 import sys
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
@@ -109,6 +109,15 @@ class MainTest(unittest.TestCase):
                 exit_code = main(["todo_stats.py", "--percent", str(path)])
             self.assertEqual(exit_code, 0)
             self.assertEqual(out.getvalue(), "33%\n")
+
+    def test_missing_file_reports_error_and_exit_code(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = Path(tmp_dir) / "missing-TODO.md"
+            err = io.StringIO()
+            with redirect_stderr(err):
+                exit_code = main(["todo_stats.py", str(path)])
+            self.assertEqual(exit_code, 1)
+            self.assertIn(str(path), err.getvalue())
 
 
 if __name__ == "__main__":
