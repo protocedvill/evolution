@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Print completion stats for the TODO.md backlog checklist."""
 
+import argparse
 import re
 import sys
 from pathlib import Path
@@ -37,26 +38,47 @@ def percent_complete(done, total):
     return round(100 * done / total)
 
 
+def build_parser():
+    parser = argparse.ArgumentParser(
+        prog="todo_stats.py",
+        description="Print completion stats for the TODO.md backlog checklist.",
+    )
+    parser.add_argument(
+        "path",
+        nargs="?",
+        type=Path,
+        help="path to the checklist file (default: TODO.md at repo root)",
+    )
+    parser.add_argument(
+        "--remaining",
+        action="store_true",
+        help="print the text of each not-yet-done checklist item",
+    )
+    parser.add_argument(
+        "--percent",
+        action="store_true",
+        help="print the percentage of checklist items done",
+    )
+    return parser
+
+
 def main(argv):
-    args = argv[1:]
-    show_remaining = "--remaining" in args
-    show_percent = "--percent" in args
-    paths = [arg for arg in args if arg not in ("--remaining", "--percent")]
-    path = Path(paths[0]) if paths else Path(__file__).resolve().parent.parent / "TODO.md"
+    args = build_parser().parse_args(argv[1:])
+    path = args.path or Path(__file__).resolve().parent.parent / "TODO.md"
     try:
         lines = path.read_text().splitlines()
     except FileNotFoundError:
         print(f"todo_stats.py: no such file: {path}", file=sys.stderr)
         return 1
 
-    if show_remaining:
+    if args.remaining:
         for item in remaining_items(lines):
             print(item)
         return 0
 
     done, total = count_checklist_items(lines)
 
-    if show_percent:
+    if args.percent:
         print(f"{percent_complete(done, total)}%")
         return 0
 

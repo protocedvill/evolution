@@ -119,6 +119,16 @@ class MainTest(unittest.TestCase):
             self.assertEqual(exit_code, 1)
             self.assertIn(str(path), err.getvalue())
 
+    def test_help_flag_describes_options_and_exits_zero(self):
+        for flag in ("-h", "--help"):
+            out = io.StringIO()
+            with redirect_stdout(out):
+                with self.assertRaises(SystemExit) as cm:
+                    main(["todo_stats.py", flag])
+            self.assertEqual(cm.exception.code, 0)
+            self.assertIn("--remaining", out.getvalue())
+            self.assertIn("--percent", out.getvalue())
+
 
 if __name__ == "__main__":
     unittest.main()
