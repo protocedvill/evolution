@@ -5,11 +5,12 @@ import argparse
 import re
 import sys
 from pathlib import Path
+from typing import List, Sequence, Tuple
 
 CHECKLIST_RE = re.compile(r"^- \[( |x)\] ")
 
 
-def count_checklist_items(lines):
+def count_checklist_items(lines: Sequence[str]) -> Tuple[int, int]:
     """Return (done, total) counts for checklist lines in the given lines."""
     done = 0
     total = 0
@@ -23,12 +24,12 @@ def count_checklist_items(lines):
     return done, total
 
 
-def remaining_items(lines):
+def remaining_items(lines: Sequence[str]) -> List[str]:
     """Return the text of each not-yet-done checklist item, in order."""
     return [line[len("- [ ] "):] for line in lines if line.startswith("- [ ] ")]
 
 
-def percent_complete(done, total):
+def percent_complete(done: int, total: int) -> int:
     """Return the percentage of checklist items done, rounded to the nearest int.
 
     Returns 0 when there are no checklist items, to avoid dividing by zero.
@@ -62,7 +63,7 @@ def build_parser():
     return parser
 
 
-def main(argv):
+def main(argv: Sequence[str]) -> int:
     args = build_parser().parse_args(argv[1:])
     path = args.path or Path(__file__).resolve().parent.parent / "TODO.md"
     try:

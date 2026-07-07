@@ -31,5 +31,5 @@ forbidden_paths:
 - [x] Add automated tests for `scripts/check_todo_format.sh` (e.g. `tests/test_check_todo_format.py` invoking it via `subprocess` on a temp file), covering both a well-formed checklist (exit 0) and a malformed checklist line (non-zero exit plus the error message), since the script currently has no test coverage
 - [x] Add `--help`/`-h` usage output to `scripts/todo_stats.py` (e.g. via `argparse`), since running it with `-h` today silently falls through to the default output instead of describing the `--remaining`/`--percent` flags
 - [x] Update the example `scripts/todo_stats.py` output shown in README.md's "Setup / usage" section, since it shows stale counts (`16/19 tasks done`) that no longer match the current TODO.md checklist totals
-- [ ] Add type hints to the functions in `scripts/todo_stats.py` (`count_checklist_items`, `remaining_items`, `percent_complete`, `main`) to improve readability, since they currently rely solely on docstrings to describe argument and return types
+- [x] Add type hints to the functions in `scripts/todo_stats.py` (`count_checklist_items`, `remaining_items`, `percent_complete`, `main`) to improve readability, since they currently rely solely on docstrings to describe argument and return types
 
