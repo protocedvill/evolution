@@ -33,9 +33,19 @@ so entries are grouped by date instead of by release.
   `scripts/todo_stats.py`.
 - `Makefile` with a `check`/`test` target that runs
   `scripts/check_todo_format.sh` and the Python test suite in one command.
+- `tests/test_check_todo_format.py` unit tests covering
+  `scripts/check_todo_format.sh`, exercising both a well-formed checklist
+  and a malformed checklist line.
+- `--help`/`-h` usage output to `scripts/todo_stats.py`, describing the
+  `--remaining`/`--percent` flags.
+- Type hints to the functions in `scripts/todo_stats.py`
+  (`count_checklist_items`, `remaining_items`, `percent_complete`, `main`).
 
 ### Fixed
 
 - `scripts/todo_stats.py` now catches a missing/unreadable `TODO.md` path
   and prints a clear message to stderr with exit code 1, instead of letting
   an unhandled traceback surface.
+- Stale `scripts/todo_stats.py` example output in README.md's "Setup /
+  usage" section, which no longer matched the current `TODO.md` checklist
+  totals.
