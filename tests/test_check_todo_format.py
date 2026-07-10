@@ -1,4 +1,3 @@
-import shutil
 import subprocess
 import tempfile
 import unittest
@@ -10,16 +9,11 @@ SCRIPT_PATH = Path(__file__).resolve().parent.parent / "scripts" / "check_todo_f
 class CheckTodoFormatTest(unittest.TestCase):
     def _run(self, todo_contents):
         with tempfile.TemporaryDirectory() as tmp_dir:
-            tmp_scripts_dir = Path(tmp_dir) / "scripts"
-            tmp_scripts_dir.mkdir()
-            tmp_script = tmp_scripts_dir / "check_todo_format.sh"
-            shutil.copy(SCRIPT_PATH, tmp_script)
-            tmp_script.chmod(0o755)
-
-            (Path(tmp_dir) / "TODO.md").write_text(todo_contents)
+            tmp_todo = Path(tmp_dir) / "TODO.md"
+            tmp_todo.write_text(todo_contents)
 
             return subprocess.run(
-                [str(tmp_script)],
+                [str(SCRIPT_PATH), str(tmp_todo)],
                 capture_output=True,
                 text=True,
             )
