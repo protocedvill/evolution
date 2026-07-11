@@ -1,4 +1,5 @@
 import io
+import os
 import sys
 import tempfile
 import unittest
@@ -109,6 +110,26 @@ class MainTest(unittest.TestCase):
                 exit_code = main(["todo_stats.py", "--percent", str(path)])
             self.assertEqual(exit_code, 0)
             self.assertEqual(out.getvalue(), "33%\n")
+
+    def test_default_path_resolves_to_repo_root_todo(self):
+        repo_root = Path(__file__).resolve().parent.parent
+        lines = (repo_root / "TODO.md").read_text().splitlines()
+        done, total = count_checklist_items(lines)
+        remaining = total - done
+
+        cwd = os.getcwd()
+        os.chdir(repo_root)
+        try:
+            out = io.StringIO()
+            with redirect_stdout(out):
+                exit_code = main(["todo_stats.py"])
+        finally:
+            os.chdir(cwd)
+
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(
+            out.getvalue(), f"{done}/{total} tasks done ({remaining} remaining)\n"
+        )
 
     def test_missing_file_reports_error_and_exit_code(self):
         with tempfile.TemporaryDirectory() as tmp_dir:
