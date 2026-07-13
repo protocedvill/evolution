@@ -9,6 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
 from todo_stats import (  # noqa: E402
+    __version__,
     count_checklist_items,
     main,
     percent_complete,
@@ -149,6 +150,14 @@ class MainTest(unittest.TestCase):
             self.assertEqual(cm.exception.code, 0)
             self.assertIn("--remaining", out.getvalue())
             self.assertIn("--percent", out.getvalue())
+
+    def test_version_flag_prints_version_and_exits_zero(self):
+        out = io.StringIO()
+        with redirect_stdout(out):
+            with self.assertRaises(SystemExit) as cm:
+                main(["todo_stats.py", "--version"])
+        self.assertEqual(cm.exception.code, 0)
+        self.assertIn(__version__, out.getvalue())
 
 
 if __name__ == "__main__":

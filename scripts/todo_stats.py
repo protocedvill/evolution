@@ -9,6 +9,8 @@ from typing import List, Sequence, Tuple
 
 CHECKLIST_RE = re.compile(r"^- \[( |x)\] ")
 
+__version__ = "1.0.0"
+
 
 def count_checklist_items(lines: Sequence[str]) -> Tuple[int, int]:
     """Return (done, total) counts for checklist lines in the given lines."""
@@ -59,6 +61,11 @@ def build_parser():
         "--percent",
         action="store_true",
         help="print the percentage of checklist items done",
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     return parser
 

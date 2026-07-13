@@ -41,6 +41,7 @@ To check backlog progress, run `scripts/todo_stats.py`:
 python3 scripts/todo_stats.py            # e.g. "22/24 tasks done (2 remaining)"
 python3 scripts/todo_stats.py --percent  # e.g. "92%"
 python3 scripts/todo_stats.py --remaining  # list the text of each unchecked item
+python3 scripts/todo_stats.py --version  # e.g. "todo_stats.py 1.0.0"
 ```
 
 To validate a change before committing, run `make check` (or `make test`),

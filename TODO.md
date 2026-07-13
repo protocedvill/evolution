@@ -35,6 +35,6 @@ forbidden_paths:
 - [x] Update the "Unreleased" section of CHANGELOG.md to add entries for `tests/test_check_todo_format.py`, the `--help`/`-h` flag in `scripts/todo_stats.py`, the README example-output fix, and the new type hints in `scripts/todo_stats.py`, which were added in prior commits but are currently missing from the changelog
 - [x] Add an optional path argument to `scripts/check_todo_format.sh` (defaulting to `TODO.md` at the repo root, mirroring `scripts/todo_stats.py`'s `path` argument), so `tests/test_check_todo_format.py` can pass a temp file directly instead of copying the script into a temp `scripts/` directory to exercise its relative path resolution
 - [x] Add a test in `tests/test_todo_stats.py` covering `main()`'s default path resolution (invoking it with no path argument from the repo root and asserting it reads the real `TODO.md`), since only the explicit-path case is currently covered
-- [ ] Add a `--version` flag to `scripts/todo_stats.py` that prints a version string, and document it alongside `--remaining`/`--percent` in README.md
+- [x] Add a `--version` flag to `scripts/todo_stats.py` that prints a version string, and document it alongside `--remaining`/`--percent` in README.md
 - [ ] Add a `make clean` target to the `Makefile` that removes `__pycache__/` and `.pytest_cache/` directories, since contributors currently have no single command to clear these local build artifacts
 
