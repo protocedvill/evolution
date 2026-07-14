@@ -51,6 +51,9 @@ which runs `scripts/check_todo_format.sh` and the Python test suite:
 make check
 ```
 
+To remove local build artifacts (`__pycache__/` and `.pytest_cache/`
+directories), run `make clean`.
+
 ## Project docs
 
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) — how to propose changes and how the
