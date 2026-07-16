@@ -40,6 +40,14 @@ so entries are grouped by date instead of by release.
   `--remaining`/`--percent` flags.
 - Type hints to the functions in `scripts/todo_stats.py`
   (`count_checklist_items`, `remaining_items`, `percent_complete`, `main`).
+- Optional path argument to `scripts/check_todo_format.sh`, defaulting to
+  `TODO.md` at the repo root, mirroring `scripts/todo_stats.py`'s `path`
+  argument.
+- Test in `tests/test_todo_stats.py` covering `main()`'s default path
+  resolution.
+- `--version` flag to `scripts/todo_stats.py` that prints a version string.
+- `make clean` target to the `Makefile` that removes `__pycache__/` and
+  `.pytest_cache/` directories.
 
 ### Fixed
 
