@@ -5,7 +5,7 @@ set -euo pipefail
 todo_file="${1:-$(dirname "$0")/../TODO.md}"
 status=0
 
-while IFS= read -r line; do
+while IFS= read -r line || [[ -n "$line" ]]; do
   if [[ "$line" == -\ \[* ]] && [[ "$line" != "- [ ] "* ]] && [[ "$line" != "- [x] "* ]]; then
     echo "Malformed checklist line: $line" >&2
     status=1

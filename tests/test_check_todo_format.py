@@ -36,6 +36,15 @@ class CheckTodoFormatTest(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("Malformed checklist line: - [X] bad checkbox", result.stderr)
 
+    def test_malformed_last_line_without_trailing_newline_exits_nonzero(self):
+        result = self._run(
+            "# heading\n"
+            "- [x] done item\n"
+            "- [X] bad checkbox"
+        )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("Malformed checklist line: - [X] bad checkbox", result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()
