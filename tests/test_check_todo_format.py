@@ -3,7 +3,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT_PATH = Path(__file__).resolve().parent.parent / "scripts" / "check_todo_format.sh"
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SCRIPT_PATH = REPO_ROOT / "scripts" / "check_todo_format.sh"
 
 
 class CheckTodoFormatTest(unittest.TestCase):
@@ -44,6 +45,16 @@ class CheckTodoFormatTest(unittest.TestCase):
         )
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("Malformed checklist line: - [X] bad checkbox", result.stderr)
+
+    def test_default_path_resolves_to_repo_root_todo(self):
+        result = subprocess.run(
+            [str(SCRIPT_PATH)],
+            capture_output=True,
+            text=True,
+            cwd=REPO_ROOT,
+        )
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("TODO.md checklist format OK", result.stdout)
 
 
 if __name__ == "__main__":
