@@ -41,7 +41,7 @@ def percent_complete(done: int, total: int) -> int:
     return round(100 * done / total)
 
 
-def build_parser():
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="todo_stats.py",
         description="Print completion stats for the TODO.md backlog checklist.",
