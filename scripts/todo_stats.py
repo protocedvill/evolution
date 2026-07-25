@@ -63,6 +63,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="print the percentage of checklist items done",
     )
     parser.add_argument(
+        "--count",
+        "--total",
+        action="store_true",
+        dest="count",
+        help="print the total number of checklist items (done + pending)",
+    )
+    parser.add_argument(
         "--version",
         action="version",
         version=f"%(prog)s {__version__}",
@@ -88,6 +95,10 @@ def main(argv: Sequence[str]) -> int:
 
     if args.percent:
         print(f"{percent_complete(done, total)}%")
+        return 0
+
+    if args.count:
+        print(total)
         return 0
 
     remaining = total - done

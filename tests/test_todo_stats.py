@@ -112,6 +112,24 @@ class MainTest(unittest.TestCase):
             self.assertEqual(exit_code, 0)
             self.assertEqual(out.getvalue(), "33%\n")
 
+    def test_count_flag(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = self._write_todo(tmp_dir)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                exit_code = main(["todo_stats.py", "--count", str(path)])
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(out.getvalue(), "3\n")
+
+    def test_total_flag_is_alias_for_count(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = self._write_todo(tmp_dir)
+            out = io.StringIO()
+            with redirect_stdout(out):
+                exit_code = main(["todo_stats.py", "--total", str(path)])
+            self.assertEqual(exit_code, 0)
+            self.assertEqual(out.getvalue(), "3\n")
+
     def test_default_path_resolves_to_repo_root_todo(self):
         repo_root = Path(__file__).resolve().parent.parent
         lines = (repo_root / "TODO.md").read_text().splitlines()
@@ -150,6 +168,7 @@ class MainTest(unittest.TestCase):
             self.assertEqual(cm.exception.code, 0)
             self.assertIn("--remaining", out.getvalue())
             self.assertIn("--percent", out.getvalue())
+            self.assertIn("--count", out.getvalue())
 
     def test_version_flag_prints_version_and_exits_zero(self):
         out = io.StringIO()

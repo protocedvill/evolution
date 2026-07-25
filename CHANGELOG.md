@@ -48,6 +48,8 @@ so entries are grouped by date instead of by release.
 - `--version` flag to `scripts/todo_stats.py` that prints a version string.
 - `make clean` target to the `Makefile` that removes `__pycache__/` and
   `.pytest_cache/` directories.
+- `--count`/`--total` flag to `scripts/todo_stats.py` that prints just the
+  total number of checklist items, for scripting against backlog size.
 
 ### Fixed
 
