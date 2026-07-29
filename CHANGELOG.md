@@ -59,3 +59,6 @@ so entries are grouped by date instead of by release.
 - Stale `scripts/todo_stats.py` example output in README.md's "Setup /
   usage" section, which no longer matched the current `TODO.md` checklist
   totals.
+- `scripts/check_todo_format.sh` now also checks the last line of the
+  checklist file when that file doesn't end with a trailing newline,
+  instead of silently skipping an unterminated final line.
