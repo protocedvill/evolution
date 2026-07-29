@@ -45,6 +45,8 @@ python3 scripts/todo_stats.py --count    # e.g. "39" (total checklist items)
 python3 scripts/todo_stats.py --version  # e.g. "todo_stats.py 1.0.0"
 ```
 
+Alternatively, run `make stats` to print the default backlog stats output.
+
 To validate a change before committing, run `make check` (or `make test`),
 which runs `scripts/check_todo_format.sh` and the Python test suite:
 

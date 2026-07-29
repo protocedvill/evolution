@@ -46,5 +46,5 @@ forbidden_paths:
 - [x] Update the stale example output for `scripts/todo_stats.py` shown in README.md's "Setup / usage" section (currently `22/24 tasks done (2 remaining)`), since it no longer matches the current TODO.md checklist totals
 - [x] Make `scripts/check_todo_format.sh` print a clear error message to stderr and exit non-zero when given a missing checklist file path, instead of letting bash's raw "No such file or directory" redirection error surface, mirroring the friendly missing-file handling already in `scripts/todo_stats.py`; add a regression test for this case
 - [x] Make the `--remaining`, `--percent`, and `--count`/`--total` flags mutually exclusive in `scripts/todo_stats.py`'s argument parser (e.g. via `argparse`'s `add_mutually_exclusive_group`), since passing more than one together currently silently honors only one flag instead of raising a usage error; add a test covering the new error
-- [ ] Add a `make stats` target to the Makefile that runs `scripts/todo_stats.py`, so contributors have a single command to check backlog progress alongside `make check`
+- [x] Add a `make stats` target to the Makefile that runs `scripts/todo_stats.py`, so contributors have a single command to check backlog progress alongside `make check`
 
