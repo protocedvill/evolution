@@ -52,17 +52,18 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         help="path to the checklist file (default: TODO.md at repo root)",
     )
-    parser.add_argument(
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
         "--remaining",
         action="store_true",
         help="print the text of each not-yet-done checklist item",
     )
-    parser.add_argument(
+    group.add_argument(
         "--percent",
         action="store_true",
         help="print the percentage of checklist items done",
     )
-    parser.add_argument(
+    group.add_argument(
         "--count",
         "--total",
         action="store_true",

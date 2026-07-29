@@ -159,6 +159,22 @@ class MainTest(unittest.TestCase):
             self.assertEqual(exit_code, 1)
             self.assertIn(str(path), err.getvalue())
 
+    def test_mutually_exclusive_flags_reject_combination(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            path = self._write_todo(tmp_dir)
+            for flags in (
+                ["--remaining", "--percent"],
+                ["--remaining", "--count"],
+                ["--percent", "--count"],
+                ["--remaining", "--percent", "--count"],
+            ):
+                err = io.StringIO()
+                with redirect_stderr(err):
+                    with self.assertRaises(SystemExit) as cm:
+                        main(["todo_stats.py", *flags, str(path)])
+                self.assertEqual(cm.exception.code, 2)
+                self.assertIn("not allowed with argument", err.getvalue())
+
     def test_help_flag_describes_options_and_exits_zero(self):
         for flag in ("-h", "--help"):
             out = io.StringIO()
