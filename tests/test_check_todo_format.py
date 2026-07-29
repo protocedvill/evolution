@@ -46,6 +46,18 @@ class CheckTodoFormatTest(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("Malformed checklist line: - [X] bad checkbox", result.stderr)
 
+    def test_missing_file_prints_error_and_exits_nonzero(self):
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            missing_path = Path(tmp_dir) / "missing.md"
+            result = subprocess.run(
+                [str(SCRIPT_PATH), str(missing_path)],
+                capture_output=True,
+                text=True,
+            )
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(f"no such file: {missing_path}", result.stderr)
+        self.assertNotIn("No such file or directory", result.stderr)
+
     def test_default_path_resolves_to_repo_root_todo(self):
         result = subprocess.run(
             [str(SCRIPT_PATH)],
