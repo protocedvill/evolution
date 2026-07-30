@@ -50,6 +50,9 @@ so entries are grouped by date instead of by release.
   `.pytest_cache/` directories.
 - `--count`/`--total` flag to `scripts/todo_stats.py` that prints just the
   total number of checklist items, for scripting against backlog size.
+- `make stats` target to the Makefile that runs `scripts/todo_stats.py`, so
+  contributors have a single command to check backlog progress alongside
+  `make check`.
 
 ### Fixed
 
@@ -62,3 +65,10 @@ so entries are grouped by date instead of by release.
 - `scripts/check_todo_format.sh` now also checks the last line of the
   checklist file when that file doesn't end with a trailing newline,
   instead of silently skipping an unterminated final line.
+- `scripts/check_todo_format.sh` now prints a clear error message to
+  stderr and exits non-zero when given a missing checklist file path,
+  instead of letting bash's raw "No such file or directory" redirection
+  error surface.
+- `scripts/todo_stats.py`'s `--remaining`, `--percent`, and
+  `--count`/`--total` flags are now mutually exclusive, instead of
+  silently honoring only one flag when more than one is passed together.
