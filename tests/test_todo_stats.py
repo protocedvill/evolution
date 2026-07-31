@@ -71,6 +71,10 @@ class PercentCompleteTest(unittest.TestCase):
     def test_no_items_is_zero(self):
         self.assertEqual(percent_complete(0, 0), 0)
 
+    def test_rounds_half_away_from_zero(self):
+        # 1/8 = 12.5%, which round() would round to 12 (banker's rounding).
+        self.assertEqual(percent_complete(1, 8), 13)
+
 
 class MainTest(unittest.TestCase):
     def _write_todo(self, tmp_dir):

@@ -2,6 +2,7 @@
 """Print completion stats for the TODO.md backlog checklist."""
 
 import argparse
+import math
 import re
 import sys
 from pathlib import Path
@@ -34,11 +35,14 @@ def remaining_items(lines: Sequence[str]) -> List[str]:
 def percent_complete(done: int, total: int) -> int:
     """Return the percentage of checklist items done, rounded to the nearest int.
 
+    Rounds half away from zero (e.g. 12.5 -> 13), unlike Python's built-in
+    round() which uses banker's rounding (round-half-to-even).
+
     Returns 0 when there are no checklist items, to avoid dividing by zero.
     """
     if total == 0:
         return 0
-    return round(100 * done / total)
+    return math.floor(100 * done / total + 0.5)
 
 
 def build_parser() -> argparse.ArgumentParser:
